@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Monster Detail</title>
+  </head>
+  <body>
+    <!-- You can modify the HTML to apply change event or add more elements -->
+    <h3>Monster Detail</h3>
+    <div>Select Monster:</div>
+        <div>
+            <select id="monster-list" onchange="onSelectorChange();">
+                <option value="1">Fire Dragon</option>
+                <option value="2">Ice Wolf</option>
+                <option value="3">Shadow Goblin</option>
+                <option value="4">Lightning Phoenix</option>
+                <option value="5">Earth Golem</option>
+                <option value="6">Poison Spider</option>
+                <option value="7">Wind Eagle</option>
+                <option value="8">Dark Skeleton</option>
+                <option value="9">Crystal Unicorn</option>
+                <option value="10">Lava Titan</option>
+            </select>
+        </div>
+    <hr/>
+    <div>
+      <table>
+        <tr>
+          <th>ID</th>
+          <td id="td-monster-id"></td>
+        </tr>
+        <tr>
+          <th>Name</th>
+          <td id="td-monster-name"></td>
+        </tr>
+        <tr>
+          <th>HP</th>
+          <td id="td-monster-hp"></td>
+        </tr>
+        <tr>
+          <th>EXP</th>
+          <td id="td-monster-exp"></td>
+        </tr>
+      </table>
+    </div>
+    <script>
+      // Monster list as array of JSON objects
+      const monsters = [
+        {
+          "id": 1,
+          "name": "Fire Dragon",
+          "hp": 150,
+          "exp": 85
+        },
+        {
+          "id": 2,
+          "name": "Ice Wolf",
+          "hp": 75,
+          "exp": 45
+        },
+        {
+          "id": 3,
+          "name": "Shadow Goblin",
+          "hp": 40,
+          "exp": 25
+        },
+        {
+          "id": 4,
+          "name": "Lightning Phoenix",
+          "hp": 200,
+          "exp": 120
+        },
+        {
+          "id": 5,
+          "name": "Earth Golem",
+          "hp": 180,
+          "exp": 95
+        },
+        {
+          "id": 6,
+          "name": "Poison Spider",
+          "hp": 60,
+          "exp": 35
+        },
+        {
+          "id": 7,
+          "name": "Wind Eagle",
+          "hp": 90,
+          "exp": 55
+        },
+        {
+          "id": 8,
+          "name": "Dark Skeleton",
+          "hp": 65,
+          "exp": 40
+        },
+        {
+          "id": 9,
+          "name": "Crystal Unicorn",
+          "hp": 120,
+          "exp": 75
+        },
+        {
+          "id": 10,
+          "name": "Lava Titan",
+          "hp": 250,
+          "exp": 150
+        }
+      ];
+      // Selection handler: find monster by id and display details
+      function onSelectorChange(){
+        const selectedValue = document.getElementById("monster-list").value;
+        const id = parseInt(selectedValue, 10);
+        const monster = monsters.find(m => m.id === id);
+
+        const idTd = document.getElementById("td-monster-id");
+        const nameTd = document.getElementById("td-monster-name");
+        const hpTd = document.getElementById("td-monster-hp");
+        const expTd = document.getElementById("td-monster-exp");
+
+        if (monster) {
+          idTd.textContent = monster.id;
+          nameTd.textContent = monster.name;
+          hpTd.textContent = monster.hp;
+          expTd.textContent = monster.exp;
+        } else {
+          idTd.textContent = "";
+          nameTd.textContent = "";
+          hpTd.textContent = "";
+          expTd.textContent = "";
+        }
+      }
+
+      // Show initial selection on page load
+      document.addEventListener('DOMContentLoaded', function(){
+        onSelectorChange();
+      });
+    </script>
+  </body>
+</html>
